@@ -20,7 +20,7 @@ jobs:
 
     - name: Zip Lyrics files
       run: |
-        cd "Lyric"
+        cd "Lyrics"
         zip -r lyrics.zip *
 
     - name: Upload PPTX ZIP
@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: lyrics
-        path: Lyric/lyrics.zip
+        path: Lyrics/lyrics.zip
