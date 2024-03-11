@@ -1,0 +1,36 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # 可以根据你的分支名进行调整
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Zip PPTX files
+      run: |
+        cd "ppt 16-9"
+        zip -r pptx.zip *.pptx
+
+    - name: Zip Lyrics files
+      run: |
+        cd "Lyric"
+        zip -r lyrics.zip *
+
+    - name: Upload PPTX ZIP
+      uses: actions/upload-artifact@v2
+      with:
+        name: pptx
+        path: "ppt 16-9/pptx.zip"
+
+    - name: Upload Lyrics ZIP
+      uses: actions/upload-artifact@v2
+      with:
+        name: lyrics
+        path: Lyric/lyrics.zip

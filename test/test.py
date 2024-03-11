@@ -5,6 +5,9 @@ from io import BytesIO
 import cv2
 import numpy as np
 
+
+
+
 def enhance_text(image_path, contrast_factor=1.5, sharpness_factor=3.0):
     # Open the image
     img = Image.open(image_path)
@@ -79,11 +82,12 @@ def set_all_recognized_text_as_comments(pptx_path, filename):
     all_recognized_text = ""
     all_recognized_py = ""
 
-    if(len(presentation.core_properties.comments.strip())>=30):
-        return 0
-    elif(len(presentation.core_properties.subject.strip())>=30):
-        return 0
-    else:
+    # if(len(presentation.core_properties.comments.strip())>=30):
+    #     return 0
+    # elif(len(presentation.core_properties.subject.strip())>=30):
+    #     return 0
+    # else:
+    if True:
         for slide_number, slide in enumerate(presentation.slides, start=1):
             print(f'Processing Slide {slide_number}...')
             for shape_number, shape in enumerate(slide.shapes, start=1):
@@ -127,6 +131,8 @@ def set_all_recognized_text_as_comments(pptx_path, filename):
                     # Append to the overall recognized text
                     all_recognized_text += f'\n{filtered_text}'
                     all_recognized_py += f'\n{initials}'
+                    # 在set_all_recognized_text_as_comments函数的末尾添加以下代码
+
                     # print("-------------------------------------------------")
         # Set all recognized text as comments in the core_properties
         #print(all_recognized_text)
@@ -139,9 +145,9 @@ def set_all_recognized_text_as_comments(pptx_path, filename):
         presentation.core_properties.category = "投影"
         presentation.core_properties.content_status = "索引完成"
         presentation.core_properties.author = "Yihao Zhuo"
-
+        save_to_excel(filename+".pptx", all_recognized_text, all_recognized_py)
         # Save the modified PPTX file
-        presentation.save(pptx_path)
+
 
         # Save the extracted text to a file
         with open("D:/Users/yihao zhuo/Desktop/ppt/dir/ppt 16-9/" + filename + ".txt", 'w', encoding='utf-8') as file:
