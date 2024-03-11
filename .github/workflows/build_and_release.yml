@@ -29,9 +29,8 @@ jobs:
       run: |
         cd "lyrics"
         zip -r lyrics.zip *
-
-     - name: Create Release
-        id: create_release
+    - name: Create Release
+      id: create_release
       uses: actions/create-release@v1
       with:
         tag_name: ${{ github.sha }}
