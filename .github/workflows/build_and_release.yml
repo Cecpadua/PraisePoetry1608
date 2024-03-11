@@ -33,7 +33,11 @@ jobs:
     - name: Get latest tag
       id: get_tag
       run: echo ::set-output name=tag::$(git rev-parse --short HEAD)
-
+      
+    - name: Get Current Date
+      id: current_date
+      run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
+  
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -41,7 +45,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           tag_name: v${{ steps.get_tag.outputs.tag }}
-          release_name: Release $(date +"%Y.%m.%d")
+          release_name: Release ${{ steps.current_date.outputs.date }}
           body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
