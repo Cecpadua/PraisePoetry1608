@@ -54,6 +54,8 @@ jobs:
         asset_path: "ppt 16-9/pptx.zip"
         asset_name: pptx.zip
         asset_content_type: application/zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload Lyrics ZIP to Release
       uses: actions/upload-release-asset@v1
@@ -62,3 +64,5 @@ jobs:
         asset_path: "lyric/lyrics.zip"
         asset_name: lyrics.zip
         asset_content_type: application/zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
