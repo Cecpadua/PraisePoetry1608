@@ -19,6 +19,8 @@
 5. 将您的更改推送到您的分支 (`git push origin 新分支名`)。
 6. 提交一个Pull Request。
 
+**下载 [Release](https://github.com/Cecpadua/PraisePoetry1608/releases)**。
+
 ## 许可证
 
 这个项目采用 [MIT 许可证](LICENSE)。
